@@ -11,7 +11,11 @@
 	<body class="{% block body_class %}{% endblock %}">
 		<section id="top">
 			<header>
-	        	Καλωσήλθες, {{ user.first_name}}!
+				{% if user.is_authenticated %}
+	        		Καλωσήλθες, {{ user.first_name}}!
+	        	{% else %}
+	        		Καλωσήλθατε 
+	        	{% endif %}
 			</header>
 		</section>
 		<div id='content' class='noborder'>

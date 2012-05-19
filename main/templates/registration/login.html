@@ -2,7 +2,7 @@
 {% block content %}
 	<form enctype="multipart/form-data" action="" method="post">
 			{% csrf_token %}
-			{{form}}
+			{{form.as_p}}
 		<input type="submit" value="login">
 		<input type="hidden" name="next" value="{% url first-page %}" />
 	<form>

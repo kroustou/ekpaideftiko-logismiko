@@ -19,5 +19,7 @@
 {% endblock %}
 
 {% block footer%}
-  <a href="{% url logout %}">Αποσύνδεση</a>
+  {% if user.is_authenticated%}
+    <a href="{% url logout %}">Αποσύνδεση</a>
+  {% endif %} 
 {% endblock %}
