@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if user.is_authenticated%}
+    Είσαι
+    {% if user.is_staff %}
+      καθηγητής
+      {% include "professor.html" %}
+    {% else %}
+      μαθητής
+      <div class="main_content">
+        {% include "student.html" %}
+      </div>
+    {% endif %}
+    
+  {% else %}
+    μπορείτε να συνδεθείτε <a href="{% url login %}">εδώ </a>
+  {% endif %}
+{% endblock %}
+
+{% block footer%}
+  <a href="{% url logout %}">Αποσύνδεση</a>
+{% endblock %}

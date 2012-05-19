@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+	<form enctype="multipart/form-data" action="" method="post">
+			{% csrf_token %}
+			{{form}}
+		<input type="submit" value="login">
+		<input type="hidden" name="next" value="{% url first-page %}" />
+	<form>
+	<a href="{% url register %}">Εγγραφείτε εδώ!</a>
+{% endblock %}
