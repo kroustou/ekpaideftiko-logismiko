@@ -19,24 +19,24 @@ class NewUserForm(ModelForm):
 
 
 class ExampleForm(ModelForm):
-	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='example')
 	class Meta:
 		model = Example
 
 
 class TrueOrFalse(ModelForm):
-	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='ToF')
 	class Meta:
 		model = TrueOrFalse
 
 
 class FillTheBlanks(ModelForm):
-	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	form_type = forms.CharField(max_length=3, widget=forms.HiddenInput, initial='FtB')
 	class Meta:
 		model = FillTheBlanks
 
 class MultipleChoice(ModelForm):
-	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	form_type = forms.CharField(max_length=2, widget=forms.HiddenInput, initial='MC')
 	class Meta:
 		model = MultipleChoice
 

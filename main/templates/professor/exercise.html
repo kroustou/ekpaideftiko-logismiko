@@ -4,10 +4,12 @@
 {% block content %}
 {% include "professor-menu.html" %}
 <div class="right">
-	{{ message }}
-	<form method="post">
-		{{ form }}
-		<input type="submit" value="Αποθήκευση">
+	{{ form }}
+	<form method="post" action="/save/">
+		<div class="ajax-result"> 
+			Επιλέξτε είδος άσκησης
+		</div>
+		<input type="submit" value="Αποθήκευση" id="add">
 	</form>
 </div>
 {% endblock %}

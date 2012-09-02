@@ -2,7 +2,7 @@
 from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExerciseForm, ExamForm, TrueOrFalse, FillTheBlanks, MultipleChoice
 from django.views.decorators.csrf import csrf_exempt
 from models import Example
@@ -34,6 +34,8 @@ def example(request):
 
 @csrf_exempt
 def add(request, type):
+    message = ''
+    template_name = 'professor/example.html'
     if type == 'example':
         form = ExampleForm(request.POST or None)
     elif type == 'test':
@@ -42,12 +44,11 @@ def add(request, type):
         form = ExamForm(request.POST or None)
     elif type == 'exercise':
         form = ExerciseForm(request.POST or None)
-     
-
-    if form.is_valid():
-        form.save()
-        form = ExampleForm()
-    return render_to_response('professor/example.html', {'form': form})
+        template_name = 'professor/exercise.html'
+    if request.POST and form.is_valid: 
+        form.save()        
+        message = "Αποθηκεύτηκε επιτυχώς!"
+    return render_to_response(template_name, {'form': form, 'type': type, 'message': message})
 
 def show_students(request):
     students = User.objects.filter(is_staff=False)
@@ -69,3 +70,20 @@ def fetch(request):
         form = TrueOrFalse()
     return HttpResponse(str(form))
         
+@csrf_exempt
+def save(request):
+    if request.POST:
+        form_type = request.POST['form_type']
+        if form_type == 'FtB':
+            form = FillTheBlanks(request.POST)
+        elif form_type == 'MC':
+            form = MultipleChoice(request.POST) 
+        elif form_type == 'ToF':
+            form = TrueOrFalse(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse_lazy('new-exercise'))
+        else:
+            return HttpResponse(str(form))
+    else:
+            return HttpResponse('Δεν θα έπρεπε να είστε εδώ!')

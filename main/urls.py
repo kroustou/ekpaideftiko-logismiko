@@ -28,5 +28,7 @@ urlpatterns = patterns('',
     url(r'^progress/$',login_required(views.main), name='students-progress'),
 
     url(r'^fetch/$',views.fetch, name='fetch-exercise'),
+    url(r'^save/$',views.save, name='save-exercise'),
+
 
 )

@@ -12,8 +12,8 @@ DIFFICULTIES = (
 	)
 
 CHOICES = (
-		(True , u'Σωστό'),
-		(False , u'Λάθος'),
+		(u'True' , u'Σωστό'),
+		(u'False' , u'Λάθος'),
 	)
 
 
@@ -33,7 +33,7 @@ class Chapter(models.Model):
 
 class TrueOrFalse(models.Model):
 	question = models.TextField(max_length=255)
-	choices = models.CharField(max_length=1 , choices=CHOICES)
+	choices = models.CharField(max_length=255 , choices=CHOICES)
 	difficulty = models.CharField(max_length=1 , choices=DIFFICULTIES)
 
 class MultipleChoice(models.Model):
