@@ -1,10 +1,58 @@
 #-*- coding: utf-8 -*-
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
+from django.forms import ModelForm
+
+from models import Example,Student, TrueOrFalse, FillTheBlanks, MultipleChoice, DIFFICULTIES, Test, Examination
+
+EXERCISETYPES = (
+		('TrueOrFalse', 'Σωστό η Λάθος'),
+		('MultipleChoice', 'πολλαπλής επιλογής'),
+		('FillTheBlanks', 'συμπλήρωση κενού'),
+	)
+
+class NewUserForm(ModelForm):
+	password = forms.CharField( widget=forms.PasswordInput, label="Κωδικός" )
+	class Meta:
+		model = Student
+		fields = ('first_name', 'last_name', 'username', 'password')
 
 
-class NewUserForm(UserCreationForm):
-    first_name = forms.CharField(label=u'Όνομα', help_text=u'το ονομά σας')
-    last_name = forms.CharField(label=u'Επώνυμο', help_text=u'το επωνυμό σας')
-    is_staff = forms.BooleanField(required=False, label=u"Δάσκαλος", initial=False, help_text=u'Είστε Δάσκαλος;')
+class ExampleForm(ModelForm):
+	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	class Meta:
+		model = Example
+
+
+class TrueOrFalse(ModelForm):
+	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	class Meta:
+		model = TrueOrFalse
+
+
+class FillTheBlanks(ModelForm):
+	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	class Meta:
+		model = FillTheBlanks
+
+class MultipleChoice(ModelForm):
+	form_type = forms.CharField(max_lenght=2, widget=forms.HiddenInput, default='koko')
+	class Meta:
+		model = MultipleChoice
+
+class SelectLevelForm(forms.Form):
+	level = forms.ChoiceField(label=u'Επίπεδο',
+								choices=DIFFICULTIES)
+
+class TestForm(ModelForm):
+	class Meta:
+		model = Test
+
+class ExamForm(ModelForm):
+	class Meta:
+		model = Examination
+
+class ExerciseForm(forms.Form):
+	exercise_type = forms.ChoiceField(label=u'Είδος άσκησης',
+								choices=EXERCISETYPES)
 

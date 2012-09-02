@@ -6,13 +6,19 @@ body {
 	background: whitesmoke;
 }	
 
-input{
+input {
 	border: 0;
 	height: 20px;
 	display: block;
 	margin:4px;
 }
 
+textarea {
+	border: 0;
+	height: 80px;
+	display: block;
+	margin:4px;
+}
 
 a{
 	color:#544001;
@@ -45,10 +51,19 @@ footer{
 	margin: auto;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
-	background:#092E20;
+	background: darkgray;
 	padding: 20px;
 	color: white;
-	min-height:600px;
+	overflow: auto;
+}
+
+ul.menu {
+	width: 250px;
+	list-style: none;
+	padding: 10px;
+	border: 1px dotted black;
+	float: left;
+
 }
 
 form {
@@ -67,4 +82,39 @@ form .errorlist{
 	margin:0px;
 }
 
+.right {
+	width: 600px;
+	float: left;
+}
 
+/*Tabs and panes*/
+.panes > li {
+	display: none;
+}
+
+.panes > li.active {
+	display: block;
+}
+
+.tabs >li {
+	list-style: none;	
+	cursor: pointer;
+	display: inline;
+}
+
+.tabs > li:before  {
+	content: ">>";
+} 
+
+.tabs > li:hover {
+	color: silver;
+}
+
+.tabs > li.active {
+	color: silver;
+}
+
+
+#add {
+	display: none;
+}

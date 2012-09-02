@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "professor-menu.html" %}
+<div class="right">
+	 {% if students %}
+	  	<ul>
+	 	{% for student in students %}
+	 		<li>{{ student.first_name }} {{ student.last_name }}</li>
+	 	{% endfor %}
+	 	</ul>
+	{% else %}
+		Δεν έχουν εγγραφεί μαθητές!
+	{% endif %}
+ </div>
+{% endblock %}
+
+{% block footer%}
+    <a href="{% url logout %}">Αποσύνδεση</a>
+{% endblock %}
