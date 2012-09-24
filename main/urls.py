@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', login_required(views.main), name='first-screen'),
     url(r'^login/$', login, name='login'),
     url(r'^logout/$', logout, {'next_page': '/'}, name='logout'),
-        url(r'^register/$', views.RegistrationView.as_view(), name='register'),
+    url(r'^register/$', views.RegistrationView.as_view(), name='register'),
     url(r'^$', login_required(views.main), name='first-page'),
 
     url(r'^theory/$', login_required(views.theory), name='theoria'),
@@ -27,10 +27,10 @@ urlpatterns = patterns('',
 
     url(r'^show-students/$', staff_member_required(views.show_students), name='students'),
     url(r'^students-progress/$', login_required(views.main), name='students-progress'),
-
-
+    
+    url(r'^get-exercise/$', views.get_exercise, name='get-exercise'),
     url(r'^fetch/$', views.fetch, name='fetch-exercise'),
     url(r'^save/$', views.save, name='save-exercise'),
-
-
+    
+    url(r'^evaluate-answer/$', views.evaluate_answer, name='evaluate-answer'),
 )

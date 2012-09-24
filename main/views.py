@@ -3,10 +3,11 @@ from django.views.generic.edit import FormView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExerciseForm, ExamForm, TrueOrFalse, FillTheBlanks, MultipleChoice
+from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExerciseForm, ExamForm, TrueOrFalseForm, FillTheBlanksForm, MultipleChoiceForm, StudentTrueOrFalse, StudentMultipleChoice, StudentFillTheBlanks
 from django.views.decorators.csrf import csrf_exempt
-from models import Example
+from models import Example, TrueOrFalse, MultipleChoice, FillTheBlanks
 from django.contrib.auth.models import User
+import random
 
 class RegistrationView(FormView):
     form_class = NewUserForm
@@ -46,7 +47,7 @@ def add(request, type):
         form = ExerciseForm(request.POST or None)
         template_name = 'professor/exercise.html'
     if request.POST and form.is_valid: 
-        form.save()        
+        form.save()
         message = "Αποθηκεύτηκε επιτυχώς!"
     return render_to_response(template_name, {'form': form, 'type': type, 'message': message})
 
@@ -63,11 +64,11 @@ def fetch(request):
     exercise_type = request.POST['exercise_type']
     if exercise_type == 'FillTheBlanks':
         print 'FillTheBlanks'
-        form = FillTheBlanks()
+        form = FillTheBlanksForm()
     elif exercise_type == 'MultipleChoice':
-        form = MultipleChoice() 
+        form = MultipleChoiceForm() 
     else:
-        form = TrueOrFalse()
+        form = TrueOrFalseForm()
     return HttpResponse(str(form))
         
 @csrf_exempt
@@ -75,11 +76,11 @@ def save(request):
     if request.POST:
         form_type = request.POST['form_type']
         if form_type == 'FtB':
-            form = FillTheBlanks(request.POST)
+            form = FillTheBlanksForm(request.POST)
         elif form_type == 'MC':
-            form = MultipleChoice(request.POST) 
+            form = MultipleChoiceForm(request.POST) 
         elif form_type == 'ToF':
-            form = TrueOrFalse(request.POST)
+            form = TrueOrFalseForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse_lazy('new-exercise'))
@@ -87,3 +88,39 @@ def save(request):
             return HttpResponse(str(form))
     else:
             return HttpResponse('Δεν θα έπρεπε να είστε εδώ!')
+
+@csrf_exempt
+def get_exercise(request):
+    exercise_level = request.POST['exercise_level']
+    type = random.choice([1, 2, 3])
+    type = 1                        #REMOVE THIS LINE BEFORE RELEASE.
+    if type == 1:
+        exercise_set = FillTheBlanks.objects.filter(difficulty = exercise_level)
+        form = StudentFillTheBlanks()
+    elif type == 2:
+        exercise_set = MultipleChoice.objects.filter(difficulty = exercise_level)
+        form = StudentMultipleChoice()
+    else:
+        exercise_set = TrueOrFalse.objects.filter(difficulty = exercise_level)
+        form = StudentTrueOrFalse
+    exercise = random.choice(exercise_set)
+    return render_to_response('students/exercise.html', {'type': type, 'exercise': exercise, 'form': form})
+    
+@csrf_exempt 
+def evaluate_answer(request):
+    exercise_type = request.POST['exercise_type']
+    exercise_pk = request.POST['exercise_pk']
+    answer = request.POST['answer']
+    
+    if (exercise_type == "FtB"):
+        exercise = FillTheBlanks.objects.get(pk = exercise_pk)
+    elif(exercise_type == "MC"):
+        exercise = MultipleChoice.objects.get(pk = exercise_pk)
+    else:
+        exercise = TrueOrFalse.objects.get(pk = exercise_pk)
+    
+    if (exercise.answer == answer):
+        return HttpResponse('Right') #Placeholder
+    else:
+        return HttpResponse('Wrong') #Placeholder
+    

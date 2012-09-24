@@ -32,22 +32,24 @@ class Chapter(models.Model):
 
 
 class TrueOrFalse(models.Model):
-	question = models.TextField(max_length=255)
-	choices = models.CharField(max_length=255 , choices=CHOICES)
-	difficulty = models.CharField(max_length=1 , choices=DIFFICULTIES)
+    question = models.TextField(max_length=255)
+    choices = models.CharField(max_length=255, choices=CHOICES)
+    difficulty = models.CharField(max_length=1, choices=DIFFICULTIES)
+    answer = models.CharField(max_length=255, choices=CHOICES)
 
+    
 class MultipleChoice(models.Model):
 	question = models.CharField(max_length=255)
 	choice1 = models.CharField(max_length=255)
 	choice2 = models.CharField(max_length=255)
 	choice3 = models.CharField(max_length=255)
 	choice4 =  models.CharField(max_length=255)
-	right = models.PositiveIntegerField(validators=[MaxValueValidator(4)])
-	difficulty = models.CharField(max_length=1 , choices=DIFFICULTIES)
+	answer = models.PositiveIntegerField(validators=[MaxValueValidator(4)])
+	difficulty = models.CharField(max_length=1, choices=DIFFICULTIES)
 
 
 class FillTheBlanks(models.Model):
-	sentence = models.TextField()
+	question = models.TextField(max_length=255)
 	answer = models.CharField(max_length=255)
 	difficulty = models.CharField(max_length=1 , choices=DIFFICULTIES)
 
