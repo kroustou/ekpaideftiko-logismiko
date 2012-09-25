@@ -2,9 +2,10 @@
 {% load staticfiles %}
 
 {% block content %}
+
  {% include "student-menu.html" %}
  <div class="right">
- 	<div id="{{ type }}-level">{{ level }}</div>
+ 	<div id="{{ type }}-level">{{ level }}<br>{{ chapter }}</div>
  	{% comment %}
  		Ajax request  in order to generate a test to the current level
  		and put it in the div.container!
