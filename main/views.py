@@ -8,7 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 from models import Example, Exercise, TrueOrFalse, MultipleChoice, FillTheBlanks, Mistakes
 from django.contrib.auth.models import User
 import random
-import datetime
 import utils
 
 class RegistrationView(FormView):
@@ -95,6 +94,7 @@ def save(request):
 def get_exercise(request):
     exercise_level = request.POST['exercise_level']
     type = random.choice([1, 2, 3])
+    type =1
     if type == 1:
         exercise_set = FillTheBlanks.objects.filter(difficulty = exercise_level)
         form = StudentFillTheBlanks()
@@ -104,8 +104,8 @@ def get_exercise(request):
     else:
         exercise_set = TrueOrFalse.objects.filter(difficulty = exercise_level)
         form = StudentTrueOrFalse
+    print exercise_set
     exercise = random.choice(exercise_set)
-    return exercise
     return render_to_response('students/exercise.html', {'type': type, 'exercise': exercise, 'form': form})
 
 @csrf_exempt
@@ -120,7 +120,9 @@ def get_exam(request):
 def evaluate_exercise(request):
     exercise_pk = request.POST['exercise_pk']
     answer = request.POST['answer']
-    if(utils.evaluate_answer(exercise_pk=exercise_pk, answer=answer)):
+    type = request.POST['exercise_type']
+    print request.user.pk
+    if(utils.evaluate_answer(exercise_pk=exercise_pk, answer=answer, type=type, student=request.user)):
         return HttpResponse('Right')
     else:
         return HttpResponse('Wrong')

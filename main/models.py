@@ -69,7 +69,7 @@ class Examination(models.Model):
     difficulty = models.CharField(max_length=1, choices=DIFFICULTIES)
 
 class Mistakes(models.Model):
-    student = models.ForeignKey('student')
+    student = models.ForeignKey('Student')
     exercise = models.ForeignKey('Exercise')
     timeMade = models.DateTimeField()
     answer = models.CharField(max_length=255)
@@ -77,5 +77,5 @@ class Mistakes(models.Model):
 class Grade(models.Model):
     student = models.ForeignKey('Student')
     exam = models.ForeignKey('Examination')
-    takenOn = models.DatetimeField() 
+    takenOn = models.DateTimeField() 
     
