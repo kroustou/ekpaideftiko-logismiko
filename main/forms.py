@@ -2,45 +2,44 @@
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
-
 from models import Example,Student, TrueOrFalse, FillTheBlanks, MultipleChoice, CHOICES, DIFFICULTIES, Test, Examination
 
 EXERCISETYPES = (
-		('TrueOrFalse', 'Σωστό η Λάθος'),
-		('MultipleChoice', 'πολλαπλής επιλογής'),
-		('FillTheBlanks', 'συμπλήρωση κενού'),
-	)
+        ('TrueOrFalse', 'Σωστό η Λάθος'),
+        ('MultipleChoice', 'πολλαπλής επιλογής'),
+        ('FillTheBlanks', 'συμπλήρωση κενού'),
+    )
 
 class NewUserForm(ModelForm):
-	password = forms.CharField( widget=forms.PasswordInput, label="Κωδικός" )
-	class Meta:
-		model = Student
-		fields = ('first_name', 'last_name', 'username', 'password')
+    password = forms.CharField( widget=forms.PasswordInput, label="Κωδικός" )
+    class Meta:
+        model = Student
+        fields = ('first_name', 'last_name', 'username', 'password')
 
 
 class ExampleForm(ModelForm):
-	form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='example')
-	class Meta:
-		model = Example
+    form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='example')
+    class Meta:
+        model = Example
 
 #Exercise Creation Forms#
 #########################
 class TrueOrFalseForm(ModelForm):
-	form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='ToF')
-	class Meta:
-		model = TrueOrFalse
+    form_type = forms.CharField(max_length=10, widget=forms.HiddenInput, initial='ToF')
+    class Meta:
+        model = TrueOrFalse
 
     
 class FillTheBlanksForm(ModelForm):
-	form_type = forms.CharField(max_length=3, widget=forms.HiddenInput, initial='FtB')
-	class Meta:
-		model = FillTheBlanks
+    form_type = forms.CharField(max_length=3, widget=forms.HiddenInput, initial='FtB')
+    class Meta:
+        model = FillTheBlanks
 
     
 class MultipleChoiceForm(ModelForm):
-	form_type = forms.CharField(max_length=2, widget=forms.HiddenInput, initial='MC')
-	class Meta:
-		model = MultipleChoice
+    form_type = forms.CharField(max_length=2, widget=forms.HiddenInput, initial='MC')
+    class Meta:
+        model = MultipleChoice
     
 ########################
 ########################
@@ -67,18 +66,18 @@ class StudentMultipleChoice(forms.Form):
 ######################
 
 class SelectLevelForm(forms.Form):
-	level = forms.ChoiceField(label=u'Επίπεδο',
-								choices=DIFFICULTIES)
+    level = forms.ChoiceField(label=u'Επίπεδο',
+                                choices=DIFFICULTIES)
 
 class TestForm(ModelForm):
-	class Meta:
-		model = Test
+    class Meta:
+        model = Test
 
 class ExamForm(ModelForm):
-	class Meta:
-		model = Examination
+    class Meta:
+        model = Examination
 
 class ExerciseForm(forms.Form):
-	exercise_type = forms.ChoiceField(label=u'Είδος άσκησης',
-								choices=EXERCISETYPES)
+    exercise_type = forms.ChoiceField(label=u'Είδος άσκησης',
+                                choices=EXERCISETYPES)
 

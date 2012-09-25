@@ -29,8 +29,13 @@ urlpatterns = patterns('',
     url(r'^students-progress/$', login_required(views.main), name='students-progress'),
     
     url(r'^get-exercise/$', views.get_exercise, name='get-exercise'),
+    url(r'^get-test/$', views.get_test, name='get-test'),
+    url(r'^get-exam/$', views.get_exam, name='get-exam'),
+    
     url(r'^fetch/$', views.fetch, name='fetch-exercise'),
     url(r'^save/$', views.save, name='save-exercise'),
     
-    url(r'^evaluate-answer/$', views.evaluate_answer, name='evaluate-answer'),
+    url(r'^evaluate-exercise/$', views.evaluate_exercise, name='evaluate-exercise'),
+    url(r'^evaluate-test/$', views.evaluate_test, name='evaluate-test'),
+    url(r'^evaluate-exam/$', views.evaluate_exam,  name='evaluate-exam'),
 )

@@ -16,5 +16,3 @@ admin.site.register(models.FillTheBlanks)
 admin.site.register(models.Test)
 
 admin.site.register(models.Examination)
-
-admin.site.register(models.Grade)

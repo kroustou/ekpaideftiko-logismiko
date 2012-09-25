@@ -5,9 +5,11 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExerciseForm, ExamForm, TrueOrFalseForm, FillTheBlanksForm, MultipleChoiceForm, StudentTrueOrFalse, StudentMultipleChoice, StudentFillTheBlanks
 from django.views.decorators.csrf import csrf_exempt
-from models import Example, TrueOrFalse, MultipleChoice, FillTheBlanks
+from models import Example, Exercise, TrueOrFalse, MultipleChoice, FillTheBlanks, Mistakes
 from django.contrib.auth.models import User
 import random
+import datetime
+import utils
 
 class RegistrationView(FormView):
     form_class = NewUserForm
@@ -93,7 +95,6 @@ def save(request):
 def get_exercise(request):
     exercise_level = request.POST['exercise_level']
     type = random.choice([1, 2, 3])
-    type = 1                        #REMOVE THIS LINE BEFORE RELEASE.
     if type == 1:
         exercise_set = FillTheBlanks.objects.filter(difficulty = exercise_level)
         form = StudentFillTheBlanks()
@@ -104,23 +105,31 @@ def get_exercise(request):
         exercise_set = TrueOrFalse.objects.filter(difficulty = exercise_level)
         form = StudentTrueOrFalse
     exercise = random.choice(exercise_set)
+    return exercise
     return render_to_response('students/exercise.html', {'type': type, 'exercise': exercise, 'form': form})
+
+@csrf_exempt
+def get_test(request):
+    pass
     
-@csrf_exempt 
-def evaluate_answer(request):
-    exercise_type = request.POST['exercise_type']
+@csrf_exempt
+def get_exam(request):
+    pass
+ 
+@csrf_exempt
+def evaluate_exercise(request):
     exercise_pk = request.POST['exercise_pk']
     answer = request.POST['answer']
-    
-    if (exercise_type == "FtB"):
-        exercise = FillTheBlanks.objects.get(pk = exercise_pk)
-    elif(exercise_type == "MC"):
-        exercise = MultipleChoice.objects.get(pk = exercise_pk)
+    if(utils.evaluate_answer(exercise_pk=exercise_pk, answer=answer)):
+        return HttpResponse('Right')
     else:
-        exercise = TrueOrFalse.objects.get(pk = exercise_pk)
-    
-    if (exercise.answer == answer):
-        return HttpResponse('Right') #Placeholder
-    else:
-        return HttpResponse('Wrong') #Placeholder
+        return HttpResponse('Wrong')
+        
+@csrf_exempt
+def evaluate_test(request):
+    pass
+
+@csrf_exempt
+def evaluate_exam(request):
+    pass
     
