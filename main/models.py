@@ -96,3 +96,4 @@ class Grade(models.Model):
     student = models.ForeignKey('Student')
     exam = models.ForeignKey('Examination')
     takenOn = models.DateTimeField()
+    grade = models.PositiveIntegerField()

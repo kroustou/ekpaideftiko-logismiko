@@ -1,0 +1,154 @@
+<form class="exam" method="post" action="/evaluate-exam/">
+	<input type="hidden" name="exam_pk" value= {{ exam.pk }} />
+
+	<div class = "question">
+			{{ exam.test1.ex1.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test1.ex1.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test1-ex1" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test1-ex1" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test1.ex1.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test1-ex1"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test1-ex1" value="1" style="display: inline;"> {{ exam.test1.ex1.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test1-ex1" value="2" style="display: inline;"> {{ exam.test1.ex1.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test1-ex1" value="3" style="display: inline;"> {{ exam.test1.ex1.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test1-ex1" value="4" style="display: inline;"> {{ exam.test1.ex1.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test1.ex2.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test1.ex2.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test1-ex2" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test1-ex2" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test1.ex2.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test1-ex2"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test1-ex2" value="1" style="display: inline;"> {{ exam.test1.ex2.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test1-ex2" value="2" style="display: inline;"> {{ exam.test1.ex2.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test1-ex2" value="3" style="display: inline;"> {{ exam.test1.ex2.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test1-ex2" value="4" style="display: inline;"> {{ exam.test1.ex2.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test1.ex3.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test1.ex3.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test1-ex3" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test1-ex3" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test1.ex3.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test1-ex3"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test1-ex3" value="1" style="display: inline;"> {{ exam.test1.ex3.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test1-ex3" value="2" style="display: inline;"> {{ exam.test1.ex3.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test1-ex3" value="3" style="display: inline;"> {{ exam.test1.ex3.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test1-ex3" value="4" style="display: inline;"> {{ exam.test1.ex3.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+
+
+
+		<div class = "question">
+			{{ exam.test2.ex1.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test2.ex1.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test2-ex1" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test2-ex1" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test2.ex1.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test2-ex1"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test2-ex1" value="1" style="display: inline;"> {{ exam.test2.ex1.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test2-ex1" value="2" style="display: inline;"> {{ exam.test2.ex1.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test2-ex1" value="3" style="display: inline;"> {{ exam.test2.ex1.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test2-ex1" value="4" style="display: inline;"> {{ exam.test2.ex1.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test2.ex2.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test2.ex2.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test2-ex2" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test2-ex2" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test2.ex2.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test2-ex2"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test2-ex2" value="1" style="display: inline;"> {{ exam.test2.ex2.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test2-ex2" value="2" style="display: inline;"> {{ exam.test2.ex2.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test2-ex2" value="3" style="display: inline;"> {{ exam.test2.ex2.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test2-ex2" value="4" style="display: inline;"> {{ exam.test2.ex2.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test2.ex3.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test2.ex3.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test2-ex3" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test2-ex3" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test2.ex3.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test2-ex3"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test2-ex3" value="1" style="display: inline;"> {{ exam.test2.ex3.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test2-ex3" value="2" style="display: inline;"> {{ exam.test2.ex3.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test2-ex3" value="3" style="display: inline;"> {{ exam.test2.ex3.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test2-ex3" value="4" style="display: inline;"> {{ exam.test2.ex3.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+
+
+		<div class = "question">
+			{{ exam.test3.ex1.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test3.ex1.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test3-ex1" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test3-ex1" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test3.ex1.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test3-ex1"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test3-ex1" value="1" style="display: inline;"> {{ exam.test3.ex1.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test3-ex1" value="2" style="display: inline;"> {{ exam.test3.ex1.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test3-ex1" value="3" style="display: inline;"> {{ exam.test3.ex1.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test3-ex1" value="4" style="display: inline;"> {{ exam.test3.ex1.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test3.ex2.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test3.ex2.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test3-ex2" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test3-ex2" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test3.ex2.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test3-ex2"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test3-ex2" value="1" style="display: inline;"> {{ exam.test3.ex2.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test3-ex2" value="2" style="display: inline;"> {{ exam.test3.ex2.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test3-ex2" value="3" style="display: inline;"> {{ exam.test3.ex2.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test3-ex2" value="4" style="display: inline;"> {{ exam.test3.ex2.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+		<div class = "question">
+			{{ exam.test3.ex3.exercise_type.question }}
+	</div>
+		<div class="choices">
+		{% if exam.test3.ex3.get_type == "TrueOrFalse" %}
+			<label><input type="radio" name="answer-test3-ex3" value="True" style="display: inline;">Σωστό</label>
+			<label><input type="radio" name="answer-test3-ex3" value="False" style="display: inline;">Λάθος</label>
+		{% elif exam.test3.ex3.get_type == "FillTheBlanks"%}
+			<input type="text" name="answer-test3-ex3"/>
+		{% else %}
+			<label><input type="radio" name ="answer-test3-ex3" value="1" style="display: inline;"> {{ exam.test3.ex3.exercise_type.choice1 }} </label>
+			<label><input type="radio" name ="answer-test3-ex3" value="2" style="display: inline;"> {{ exam.test3.ex3.exercise_type.choice2 }} </label>
+			<label><input type="radio" name ="answer-test3-ex3" value="3" style="display: inline;"> {{ exam.test3.ex3.exercise_type.choice3 }} </label>
+			<label><input type="radio" name ="answer-test3-ex3" value="4" style="display: inline;"> {{ exam.test3.ex3.exercise_type.choice4 }} </label>
+		{% endif %}
+		</div>
+	<input type="submit" value="Answer" />
+</form>

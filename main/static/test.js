@@ -31,5 +31,17 @@ jQuery(function ($) {
   });
   
 
-  // var exam_level = $('#exam-level #id_level');
+  var examSwitcher = $('#exam-level select');
+  var examLevel = $('#exam-level #id_level');
+  var examChapter = $('#exam-level #id_chapter');
+  
+  examSwitcher.on('change', function(){
+    $.ajax({
+            type: "POST",
+            url: "/get-exam/",
+            data: { exam_level: examLevel.val() , chapter: examChapter.val() }
+        }).done(function( msg ) {
+            $('.container').html(msg);
+        }); 
+  });
 });

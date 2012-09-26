@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExamForm, TrueOrFalseForm, FillTheBlanksForm, MultipleChoiceForm, StudentTrueOrFalse, StudentMultipleChoice, StudentFillTheBlanks, SelectChapterForm, ExerciseForm
 from django.views.decorators.csrf import csrf_exempt
-from models import Example, Exercise, Mistakes, Chapter, Test
+from models import Example, Exercise, Mistakes, Chapter, Test, Examination as Exam, Grade, Mistakes
 from django.contrib.auth.models import User
 import random
 import utils
@@ -84,7 +84,6 @@ def test(request, test_type="exercise"):
 @csrf_exempt
 def fetch(request):
     exercise_type = request.POST['exercise_type']
-    print exercise_type
     if exercise_type == 'FillTheBlanks':
         form = FillTheBlanksForm()
     elif exercise_type == 'MultipleChoice':
@@ -120,15 +119,19 @@ def get_test(request):
 
 @csrf_exempt
 def get_exam(request):
-    pass
-
+    exam_level = request.POST['exam_level']
+    chapter = int(request.POST['chapter']) - 1
+    exam = Exam.objects.filter(chapterId=chapter, difficulty=exam_level)
+    if exam:
+        exam = random.choice(list(exam))
+        return render_to_response('students/exam.html', {'exam': exam})
+    else:
+        return HttpResponse(u'Δεν βρέθηκαν διαγωνίσματα')
 
 @csrf_exempt
 def evaluate_exercise(request):
     exercise_pk = request.POST['exercise_pk']
     answer = request.POST['answer']
-    print answer
-    print request.user.pk
     if (utils.evaluate_answer(exercise_pk=exercise_pk, answer=answer, type=type, student=request.user)):
         return HttpResponse('Right')
     else:
@@ -137,9 +140,33 @@ def evaluate_exercise(request):
 
 @csrf_exempt
 def evaluate_test(request):
-    pass
+    test_pk = request.POST['test_pk']
+    answer1 = request.POST['answer-ex1']
+    answer2 = request.POST['answer-ex2']
+    answer3 = request.POST['answer-ex3']
+    result = utils.evaluate_test(test_pk=test_pk, answers=[answer1, answer2, answer3], type=type, student=request.user)
+    return HttpResponse('right answers:'+str(result))
 
 
 @csrf_exempt
 def evaluate_exam(request):
-    pass
+    exam_pk = request.POST['exam_pk']
+    answers = [
+                request.POST['answer-test1-ex1'],
+                request.POST['answer-test1-ex2'],
+                request.POST['answer-test1-ex3'], 
+                request.POST['answer-test2-ex1'],
+                request.POST['answer-test2-ex2'],
+                request.POST['answer-test2-ex3'], 
+                request.POST['answer-test3-ex1'],
+                request.POST['answer-test3-ex2'],
+                request.POST['answer-test3-ex3']
+                ] 
+    result = utils.evaluate_exam(exam_pk=exam_pk, answers=answers, type=type, student=request.user)
+    return HttpResponse('grade:'+str(result))
+
+
+def progress(request):
+    grades = Grade.objects.filter(student=request.user).prefetch_related()
+    mistakes = Mistakes.objects.filter(student=request.user).prefetch_related()
+    return render_to_response('students/progress.html', {'grades': grades, 'mistakes': mistakes})

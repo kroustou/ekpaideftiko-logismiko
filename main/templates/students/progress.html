@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "student-menu.html" %}
+<div style="float: right; width: 600px;">
+	{% comment %}
+	<h2> Βαθμοί </h2>
+	{% for grade in grades %}
+		{{ grade.exam }}
+		{{ grade.grade }}
+		{{ grade.takenOn }}
+	{% endfor %}
+	{% endcomment %}
+
+	<h2> Λάθη </h2>
+	{% for mistake in mistakes %}
+		<p>
+			Άσκηση: {{ mistake.exercise.exercise_type.question}}<br>
+			Η απάντηση σου: {{ mistake.answer }} <br>
+			Σωστή απάντηση: {{ mistake.exercise.exercise_type.answer }} <br>
+			Ώρα: {{ mistake.timeMade}} <br>
+		</p>
+	{% endfor %}
+</div>
+
+
+ {% endblock %}

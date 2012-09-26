@@ -18,7 +18,7 @@ urlpatterns = patterns('',
     url(r'^exercises/$', login_required(views.test), kwargs={'test_type': 'exercise'}, name='exercises'),
     url(r'^test/$', login_required(views.test), kwargs={'test_type': 'test'}, name='tests'),
     url(r'^exam/$', login_required(views.test), kwargs={'test_type': 'exam'}, name='examination'),
-    url(r'^progress/$', login_required(views.main), name='progress'),
+    url(r'^progress/$', login_required(views.progress), name='progress'),
 
     url(r'^new-example/$', staff_member_required(views.add), kwargs={'type': 'example'},  name='add-example'),
     url(r'^new-test/$', login_required(views.add), kwargs={'type': 'test'}, name='new-test'),
