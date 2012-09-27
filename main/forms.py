@@ -92,6 +92,7 @@ class SelectChapterForm(forms.Form):
 
 
 class TestForm(ModelForm):
+
     class Meta:
         model = Test
 

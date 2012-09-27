@@ -13,6 +13,10 @@ input {
 	margin:4px;
 }
 
+li input {
+	display: inline;
+}
+
 textarea {
 	border: 0;
 	height: 80px;
@@ -117,4 +121,18 @@ form .errorlist{
 
 #add {
 	display: none;
+}
+
+
+.show-sos {
+	padding: 10px;
+	background: gray;
+	cursor: pointer;
+	width: 300px;
+	text-align: center;
+	margin: 10px;
+}
+
+.sos {
+	padding: 2px;
 }

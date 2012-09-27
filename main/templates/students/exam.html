@@ -1,8 +1,11 @@
 <form class="exam" method="post" action="/evaluate-exam/">
 	<input type="hidden" name="exam_pk" value= {{ exam.pk }} />
+			<div>
+				<h2>Θέμα 1ο</h2> <strong>Μονάδες {{ exam.test1Score}}</strong>
+			</div>
 
 	<div class = "question">
-			{{ exam.test1.ex1.exercise_type.question }}
+			{{ exam.test1.ex1.exercise_type.question }} 
 	</div>
 		<div class="choices">
 		{% if exam.test1.ex1.get_type == "TrueOrFalse" %}
@@ -49,9 +52,9 @@
 			<label><input type="radio" name ="answer-test1-ex3" value="4" style="display: inline;"> {{ exam.test1.ex3.exercise_type.choice4 }} </label>
 		{% endif %}
 		</div>
-
-
-
+		<div>
+			<h2>Θέμα 2ο</h2> <strong>Μονάδες {{ exam.test2Score}}</strong>
+		</div>
 		<div class = "question">
 			{{ exam.test2.ex1.exercise_type.question }}
 	</div>
@@ -100,7 +103,9 @@
 			<label><input type="radio" name ="answer-test2-ex3" value="4" style="display: inline;"> {{ exam.test2.ex3.exercise_type.choice4 }} </label>
 		{% endif %}
 		</div>
-
+<div >
+<h2>Θέμα 3ο</h2><strong>Μονάδες {{ exam.test3Score}}</strong>
+</div>
 
 		<div class = "question">
 			{{ exam.test3.ex1.exercise_type.question }}
@@ -120,7 +125,7 @@
 		</div>
 		<div class = "question">
 			{{ exam.test3.ex2.exercise_type.question }}
-	</div>
+		</div>
 		<div class="choices">
 		{% if exam.test3.ex2.get_type == "TrueOrFalse" %}
 			<label><input type="radio" name="answer-test3-ex2" value="True" style="display: inline;">Σωστό</label>
@@ -136,7 +141,7 @@
 		</div>
 		<div class = "question">
 			{{ exam.test3.ex3.exercise_type.question }}
-	</div>
+		</div>
 		<div class="choices">
 		{% if exam.test3.ex3.get_type == "TrueOrFalse" %}
 			<label><input type="radio" name="answer-test3-ex3" value="True" style="display: inline;">Σωστό</label>

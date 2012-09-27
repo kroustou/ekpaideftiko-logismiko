@@ -86,3 +86,8 @@ form .errorlist{
 	color: whitesmoke;
 }
 
+.show-sos {
+	padding: 10px;
+	background: gray;
+	cursor: pointer;
+}

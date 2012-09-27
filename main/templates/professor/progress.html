@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+{% include "professor-menu.html" %}
+<div class="right">
+	<h2> Βαθμοί </h2>
+	{% for grade in grades %}
+	<h3>Μαθητής: {{ grade.student }}</h3>
+		Διαγώνισμα:{{ grade.exam }}<br>
+		Bαθμός: {{ grade.grade }}<br>
+		Ώρα: {{ grade.takenOn }}<br>
+	{% endfor %}
+
+</div>
+{% endblock %}
+
+{% block footer%}
+    <a href="{% url logout %}">Αποσύνδεση</a>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static "/static/new-test.js" %}"></script>
+{% endblock %}

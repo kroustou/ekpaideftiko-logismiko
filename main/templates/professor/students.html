@@ -4,10 +4,11 @@
 {% block content %}
 {% include "professor-menu.html" %}
 <div class="right">
+	Εγγεγραμμένοι μαθητές:
 	 {% if students %}
 	  	<ul>
 	 	{% for student in students %}
-	 		<li>{{ student.first_name }} {{ student.last_name }}</li>
+	 		<li><input type="text" value="{{ student.first_name }}"> <input type="text" value="{{ student.last_name }}"> <a href='#' class='rename'>αλλαγή</a></li>
 	 	{% endfor %}
 	 	</ul>
 	{% else %}

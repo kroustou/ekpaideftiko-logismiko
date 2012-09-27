@@ -2,11 +2,7 @@
 
 {% block content %}
   {% if user.is_authenticated%}
-    {% if user.is_staff %}
       {% include "professor.html" %}
-    {% else %}
-        {% include "student.html" %}
-    {% endif %}    
   {% else %}
     μπορείτε να συνδεθείτε <a href="{% url login %}">εδώ </a>
   {% endif %}

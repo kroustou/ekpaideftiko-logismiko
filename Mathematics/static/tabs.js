@@ -16,4 +16,7 @@ function () {
 
     }); 
 
+    $('button').on('click', function() {
+        $('.sos').css('background', 'red');
+    });
 }();
