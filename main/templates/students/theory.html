@@ -5,6 +5,7 @@
  {% include "student-menu.html" %}
  <div class="right">
  	<div class="show-sos" >Δείξε μου τα sos</div>
+ 	<textarea placeholder="Σημειώσεις..."></textarea>
  	<ul class="tabs">
  		{% for chapter in chapters %}
  		<li {% if forloop.first %}class="active" {% endif %}>{{ chapter.title }}</li>
