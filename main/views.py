@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from forms import ExampleForm, NewUserForm, SelectLevelForm, TestForm, ExamForm, TrueOrFalseForm, FillTheBlanksForm, MultipleChoiceForm, StudentTrueOrFalse, StudentMultipleChoice, StudentFillTheBlanks, SelectChapterForm, ExerciseForm
 from django.views.decorators.csrf import csrf_exempt
-from models import Example, Exercise, Mistakes, Chapter, Test, Examination as Exam, Grade, Mistakes
+from models import Student, Example, Exercise, Mistakes, Chapter, Test, Examination as Exam, Grade, Mistakes
 from django.contrib.auth.models import User
 import random
 import utils
@@ -182,3 +182,11 @@ def progress(request):
 def students_progress(request):
     grades = Grade.objects.all().prefetch_related()
     return render_to_response('professor/progress.html', {'grades': grades})
+
+@csrf_exempt
+def change_student(request):
+    student = Student.objects.get(pk=request.POST['id']);
+    student.first_name = request.POST['name'];
+    student.last_name= request.POST['last_name'];
+    student.save()
+    return HttpResponse('done')

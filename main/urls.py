@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^new-exam/$', login_required(views.add), kwargs={'type': 'exam'}, name='new-exam'),
 
     url(r'^show-students/$', staff_member_required(views.show_students), name='students'),
+    url(r'^student/$', views.change_student, name='change-student'),
     url(r'^students-progress/$', login_required(views.students_progress), name='students-progress'),
 
     url(r'^get-exercise/$', views.get_exercise, name='get-exercise'),

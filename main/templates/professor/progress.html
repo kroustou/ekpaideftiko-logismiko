@@ -6,7 +6,7 @@
 <div class="right">
 	<h2> Βαθμοί </h2>
 	{% for grade in grades %}
-	<h3>Μαθητής: {{ grade.student }}</h3>
+	<h3>Μαθητής: {{ grade.student.first_name }} {{ grade.student.last_name }}</h3>
 		Διαγώνισμα:{{ grade.exam }}<br>
 		Bαθμός: {{ grade.grade }}<br>
 		Ώρα: {{ grade.takenOn }}<br>
