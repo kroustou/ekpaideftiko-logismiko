@@ -157,19 +157,45 @@ def evaluate_test(request):
 @csrf_exempt
 def evaluate_exam(request):
     exam_pk = request.POST['exam_pk']
-    answers = [
-                request.POST['answer-test1-ex1'],
-                request.POST['answer-test1-ex2'],
-                request.POST['answer-test1-ex3'],
-                request.POST['answer-test2-ex1'],
-                request.POST['answer-test2-ex2'],
-                request.POST['answer-test2-ex3'],
-                request.POST['answer-test3-ex1'],
-                request.POST['answer-test3-ex2'],
-                request.POST['answer-test3-ex3']
-                ]
+    answers = []
+    if 'answer-test1-ex1' in request.POST:
+        answers.append(request.POST['answer-test1-ex1'])
+    else:
+        answers.append("")
+    if 'answer-test1-ex2' in request.POST:
+        answers.append(request.POST['answer-test1-ex2'])
+    else:
+        answers.append("")
+    if 'answer-test1-ex3' in request.POST:
+        answers.append(request.POST['answer-test1-ex3'])
+    else:
+        answers.append("")
+    if 'answer-test2-ex1' in request.POST:
+        answers.append(request.POST['answer-test2-ex1'])
+    else:
+        answers.append("")
+    if 'answer-test2-ex2' in request.POST:
+        answers.append(request.POST['answer-test2-ex2'])
+    else:
+        answers.append("")
+    if 'answer-test2-ex3' in request.POST:
+        answers.append(request.POST['answer-test2-ex3'])
+    else:
+        answers.append("")
+    if 'answer-test3-ex1' in request.POST:
+        answers.append(request.POST['answer-test3-ex1'])
+    else:
+        answers.append("")
+    if 'answer-test3-ex2' in request.POST:
+        answers.append(request.POST['answer-test3-ex2'])
+    else:
+        answers.append("")
+    if 'answer-test3-ex3' in request.POST:
+        answers.append(request.POST['answer-test3-ex3'])
+    else:
+        answers.append("")
     result = utils.evaluate_exam(exam_pk=exam_pk, answers=answers, type=type, student=request.user)
-    msg = 'grade:' + str(result)
+    msg = 'Ο βαθμός σου:' + str(result)
     return render_to_response('student.html', {'message': msg})
 
 
@@ -182,6 +208,7 @@ def progress(request):
 def students_progress(request):
     grades = Grade.objects.all().prefetch_related()
     return render_to_response('professor/progress.html', {'grades': grades})
+
 
 @csrf_exempt
 def change_student(request):

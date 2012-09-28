@@ -1,5 +1,10 @@
+{% load staticfiles %}
+
 <form class="exam" method="post" action="/evaluate-exam/">
 	<input type="hidden" name="exam_pk" value= {{ exam.pk }} />
+
+
+	<h1 class="timer">Έχετε: <span class="min">{{ exam.availableTime }}</span>:<span class="sec">00</span></h1>
 			<div>
 				<h2>Θέμα 1ο</h2> <strong>Μονάδες {{ exam.test1Score}}</strong>
 			</div>
@@ -157,3 +162,5 @@
 		</div>
 	<input type="submit" value="Answer" />
 </form>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{% static "/static/timer.js" %}"></script>
