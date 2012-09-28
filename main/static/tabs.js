@@ -20,5 +20,4 @@ jQuery(function ($) {
         $('.sos').css('background', 'red');
         $(this).slideUp();
     });
-
 });
