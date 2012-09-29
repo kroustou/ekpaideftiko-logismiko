@@ -1,4 +1,4 @@
-jQuery(function ($) {
+﻿jQuery(function ($) {
     "use strict";
 
    // tabs
@@ -20,4 +20,12 @@ jQuery(function ($) {
         $('.sos').css('background', 'tomato');
         $(this).slideUp();
     });
+    
+    $(document).ready(function() {
+        $('.panes').prepend('<div class="print"><a href="#print"><img width="16" height="16" src="/static/images/print.png">Εκτύπωση.</a></div>');
+        $('.panes .print a').click(function() {
+            window.print();
+            return false;
+        });
+    }); 
 });

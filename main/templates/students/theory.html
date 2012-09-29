@@ -17,12 +17,15 @@
  			<h1>{{ chapter.title }}</h1>
  			{% autoescape off %}
  			<p class="easy">
+                <h2>Εύκολες Έννοιες</h2>
 		 		{{ chapter.contentEasy }}
 		 	</p>
 		 	<p class="medium">
-				{{ chapter.contentMedium }}
+				<h2>Μέτριες Έννοιες</h2>
+                {{ chapter.contentMedium }}
 			</p>
 			<p class="hard">
+                <h2>Δύσκολες Έννοιες</h2>
 				{{ chapter.contentHard }}
 			</p>
 			{% endautoescape %}

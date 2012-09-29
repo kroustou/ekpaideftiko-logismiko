@@ -1,7 +1,16 @@
 <form class="exercise" method="post" action="/evaluate-exercise/">
 	<input type="hidden" name="exercise_pk" value= {{ exercise.pk }} />
 	<div class = "question">
-			{{ exercise.exercise_type.question }}
+		<p>
+			{% if exercise.get_type == "TrueOrFalse" %}
+				Η ακολουθή προτάση είναι σώστη η λάθος;
+			{% elif exercise.get_type == "FillTheBlanks"%}
+				Συμπληρώστε τα κενά.
+			{% else %}
+				Επιλέξτε τη σώστη απάντηση.
+			{% endif %}
+		</p>
+		{{ exercise.exercise_type.question }}
 	</div>
 		<div class="choices">
 		{% if exercise.get_type == "TrueOrFalse" %}

@@ -54,7 +54,7 @@ def evaluate_exam(exam_pk, answers, type, student):
     grade += rights * exam.test2Score / 3
 
     rights = evaluate_test(exam.test3.id, answers[6:], type=type, student=student)
-    grade += rights * exam.test2Score / 3
+    grade += rights * exam.test3Score / 3
 
     newGrade = Grade(student=student.student, exam=exam, takenOn=datetime.now(), grade=grade)
     newGrade.save()

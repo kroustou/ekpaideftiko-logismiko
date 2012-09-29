@@ -150,6 +150,7 @@ form .errorlist{
 
 .sos {
 	padding: 2px;
+    display: inline;
 }
 
 #content .right textarea {

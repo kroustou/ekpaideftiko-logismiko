@@ -99,7 +99,7 @@ def fetch(request):
 @csrf_exempt
 def get_exercise(request):
     exercise_level = request.POST['exercise_level']
-    chapter = int(request.POST['chapter']) - 1
+    chapter = int(request.POST['chapter'])
     exercise = Exercise.objects.filter(chapterId=chapter, difficulty=exercise_level)
     if exercise:
         exercise = random.choice(list(exercise))
@@ -111,7 +111,7 @@ def get_exercise(request):
 @csrf_exempt
 def get_test(request):
     test_level = request.POST['test_level']
-    chapter = int(request.POST['chapter']) - 1
+    chapter = int(request.POST['chapter'])
     test = Test.objects.filter(chapterId=chapter, difficulty=test_level)
     if test:
         test = random.choice(list(test))
@@ -123,7 +123,7 @@ def get_test(request):
 @csrf_exempt
 def get_exam(request):
     exam_level = request.POST['exam_level']
-    chapter = int(request.POST['chapter']) - 1
+    chapter = int(request.POST['chapter'])
     exam = Exam.objects.filter(chapterId=chapter, difficulty=exam_level)
     if exam:
         exam = random.choice(list(exam))

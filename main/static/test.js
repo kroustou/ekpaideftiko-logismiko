@@ -16,9 +16,9 @@ jQuery(function ($) {
         }); 
     });
 
-  var testSwitcher = $('#test-level select');
+    var testSwitcher = $('#test-level select');
 	var test_level = $('#test-level #id_level');
-  var test_chapter = $('#test-level #id_chapter');
+    var test_chapter = $('#test-level #id_chapter');
   
   testSwitcher.on('change', function(){
     $.ajax({
