@@ -59,26 +59,26 @@ class Exercise(models.Model):
 
 
 class TrueOrFalse(models.Model):
-    question = models.CharField(max_length=255)
-    answer = models.CharField(max_length=255, choices=CHOICES)
+    question = models.CharField(max_length=255, verbose_name=u'Ερώτηση')
+    answer = models.CharField(max_length=255, choices=CHOICES, verbose_name=u'Απάντηση')
 
 
 class MultipleChoice(models.Model):
-    choice1 = models.CharField(max_length=255)
-    choice2 = models.CharField(max_length=255)
-    choice3 = models.CharField(max_length=255)
-    choice4 = models.CharField(max_length=255)
-    question = models.CharField(max_length=255)
-    answer = models.PositiveIntegerField(validators=[MaxValueValidator(4)])
+    choice1 = models.CharField(max_length=255, verbose_name=u'1')
+    choice2 = models.CharField(max_length=255, verbose_name=u'2')
+    choice3 = models.CharField(max_length=255, verbose_name=u'3')
+    choice4 = models.CharField(max_length=255, verbose_name=u'4')
+    question = models.CharField(max_length=255, verbose_name=u'Ερώτηση')
+    answer = models.PositiveIntegerField(validators=[MaxValueValidator(4)], verbose_name=u'Σωστή απάντηση (1-4)')
 
 
 class FillTheBlanks(models.Model):
-    question = models.CharField(max_length=255)
-    answer = models.CharField(max_length=255)
+    question = models.CharField(max_length=255, verbose_name=u'Ερώτηση')
+    answer = models.CharField(max_length=255, verbose_name=u'Απάντηση')
 
 
 class Test(models.Model):
-    chapterId = models.ForeignKey('Chapter')
+    chapterId = models.ForeignKey('Chapter', verbose_name=u'κεφάλαιο')
     difficulty = models.CharField(max_length=1, choices=DIFFICULTIES)
     ex1 = models.ForeignKey('Exercise', related_name='+1')
     ex2 = models.ForeignKey('Exercise', related_name='+2')

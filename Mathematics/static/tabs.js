@@ -1,5 +1,5 @@
-function () {
-        "use strict";
+jQuery(function ($) {
+    "use strict";
 
    // tabs
     var tabs = $('.tabs > li');
@@ -16,7 +16,8 @@ function () {
 
     }); 
 
-    $('button').on('click', function() {
-        $('.sos').css('background', 'red');
+     $('.show-sos').on('click', function() {
+        $('.sos').css('background', 'tomato');
+        $(this).slideUp();
     });
-}();
+});

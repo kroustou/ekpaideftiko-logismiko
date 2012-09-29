@@ -88,7 +88,7 @@ class SelectLevelForm(forms.Form):
 
 
 class SelectChapterForm(forms.Form):
-    chapter = forms.ModelChoiceField(queryset=Chapter.objects.all(), empty_label=None)
+    chapter = forms.ModelChoiceField(label='Κεφάλαιο', queryset=Chapter.objects.all(), empty_label=None)
 
 
 class TestForm(ModelForm):

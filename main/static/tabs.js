@@ -17,7 +17,7 @@ jQuery(function ($) {
     }); 
 
      $('.show-sos').on('click', function() {
-        $('.sos').css('background', 'red');
+        $('.sos').css('background', 'tomato');
         $(this).slideUp();
     });
 });

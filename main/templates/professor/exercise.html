@@ -5,7 +5,7 @@
 {% include "professor-menu.html" %}
 <div class="right">
 	<form method="post" action="">
-		{{ form }}
+		{{ form.as_p }}
 		<div class="ajax-result"> 
 			Επιλέξτε είδος άσκησης
 		</div>
@@ -15,7 +15,6 @@
 {% endblock %}
 
 {% block footer%}
-    <a href="{% url logout %}">Αποσύνδεση</a>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="{% static "/static/new-test.js" %}"></script>
 {% endblock %}

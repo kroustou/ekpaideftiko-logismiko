@@ -1,16 +1,22 @@
+#-*- coding: utf-8 -*-
 from models import Exercise, Mistakes, Test, Examination, Grade
 from datetime import datetime
 
 
 def evaluate_answer(exercise_pk, answer, type, student):
     exercise = Exercise.objects.get(pk=exercise_pk)
-    if (str(exercise.exercise_type.answer) == str(answer)):
-        return True
-    else:
+    try:
+        if (str(exercise.exercise_type.answer) == str(answer)):
+            return True
+        else:
+            newMistake = Mistakes(student=student.student, exercise=exercise,
+                                  timeMade=datetime.now(), answer=answer)
+            newMistake.save()
+    except:
         newMistake = Mistakes(student=student.student, exercise=exercise,
                               timeMade=datetime.now(), answer=answer)
         newMistake.save()
-        return False
+    return False
 
 
 def evaluate_test(test_pk, answers, type, student):

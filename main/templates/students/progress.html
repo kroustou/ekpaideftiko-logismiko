@@ -3,23 +3,30 @@
 
 {% block content %}
 {% include "student-menu.html" %}
-<div style="float: right; width: 600px;">
+<div class="right">
 	<h2> Βαθμοί </h2>
-	{% for grade in grades %}
-		Διαγώνισμα:{{ grade.exam }}<br>
-		Bαθμός: {{ grade.grade }}<br>
-		Ώρα: {{ grade.takenOn }}<br>
-	{% endfor %}
+	<ul class="grades">
+		{% for grade in grades %}
+		<li>
+			<span class="exam">Διαγώνισμα:{{ grade.exam }}</span><br>
+			Bαθμός: {{ grade.grade }}<br>
+			Ώρα: {{ grade.takenOn }}<br>
+		</li>
+		{% endfor %}
+	</ul>
 
 	<h2> Λάθη </h2>
+	<ul class="grades">
 	{% for mistake in mistakes %}
-		<p>
-			Άσκηση: {{ mistake.exercise.exercise_type.question}}<br>
+		<li>
+			<span class="exam">Άσκηση: {{ mistake.exercise.exercise_type.question}}</span><br>
 			Η απάντηση σου: {{ mistake.answer }} <br>
 			Σωστή απάντηση: {{ mistake.exercise.exercise_type.answer }} <br>
 			Ώρα: {{ mistake.timeMade}} <br>
-		</p>
+		</li>
 	{% endfor %}
+	</ul>
+
 </div>
 
 

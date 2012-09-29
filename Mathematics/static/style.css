@@ -6,13 +6,23 @@ body {
 	background: whitesmoke;
 }	
 
-input{
+input {
 	border: 0;
 	height: 20px;
 	display: block;
 	margin:4px;
 }
 
+li input {
+	display: inline;
+}
+
+textarea {
+	border: 0;
+	height: 80px;
+	display: block;
+	margin:4px;
+}
 
 a{
 	color:#544001;
@@ -48,13 +58,15 @@ footer{
 	background: darkgray;
 	padding: 20px;
 	color: white;
+	overflow: auto;
 }
 
 ul.menu {
-	width: 200px;
+	width: 250px;
 	list-style: none;
 	padding: 10px;
 	border: 1px dotted black;
+	float: left;
 
 }
 
@@ -74,6 +86,12 @@ form .errorlist{
 	margin:0px;
 }
 
+.right {
+	width: 600px;
+	float: left;
+}
+
+/*Tabs and panes*/
 .panes > li {
 	display: none;
 }
@@ -82,12 +100,43 @@ form .errorlist{
 	display: block;
 }
 
-.tabs > li.active {
-	color: whitesmoke;
+.tabs >li {
+	list-style: none;	
+	cursor: pointer;
+	display: inline;
 }
+
+.tabs > li:before  {
+	content: ">>";
+} 
+
+.tabs > li:hover {
+	color: silver;
+}
+
+.tabs > li.active {
+	color: silver;
+}
+
+
+#add {
+	display: none;
+}
+
 
 .show-sos {
 	padding: 10px;
 	background: gray;
 	cursor: pointer;
+	width: 300px;
+	text-align: center;
+	margin: 10px;
+}
+
+.sos {
+	padding: 2px;
+}
+
+.right textarea {
+	width: 100%;	
 }

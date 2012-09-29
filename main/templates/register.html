@@ -4,7 +4,6 @@
 	<form enctype="multipart/form-data" action="" method="post">
 		{% csrf_token %}
 		{%for field in form %}
-			<hr>
 			{{ field.label }}{{ field }}{{ field.errors }}{{ field.help_text }}
 		{% endfor %}
 		<input type="submit" value="register" />
