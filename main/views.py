@@ -202,7 +202,7 @@ def evaluate_exam(request):
 def progress(request):
     grades = Grade.objects.filter(student=request.user).prefetch_related()
     mistakes = Mistakes.objects.filter(student=request.user).prefetch_related()
-    return render_to_response('students/progress.html', {'grades': grades, 'mistakes': mistakes})
+    return render_to_response('students/progress.html', {'grades': grades, 'mistakes': mistakes, 'user': request.user})
 
 
 def students_progress(request):
